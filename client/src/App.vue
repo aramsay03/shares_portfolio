@@ -9,10 +9,14 @@
         <p>Your shares are worth $5 today :(</p>
       </div>
      <div id="StockChart" class="tabcontent">
+       <div class="tabelement">
       <stocks-list :stocks="stocks"></stocks-list>
+      </div>
+      <div class="tabelement">
       <stock-chart></stock-chart>
+      </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -111,12 +115,15 @@ export default {
 .tab button.active {
   background-color: #ccc;
 }
-
 /* Style the tab content */
 .tabcontent {
-  display: none;
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
+}
+
+.tabelement {
+  display: inline-block;
+  padding: 20px;
 }
 </style>
