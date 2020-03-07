@@ -9,6 +9,7 @@
         <p>Your shares are worth $5 today :(</p>
       </div>
      <div id="StockChart" class="tabcontent">
+      <stocks-list :stocks="stocks"></stocks-list>
       <stock-chart></stock-chart>
     </div>
     </div>
@@ -17,16 +18,29 @@
 <script>
 
 import StockChart from './components/StockChart.vue'
+import StockList from './components/StockList.vue'
+import ListItem from './components/ListItem.vue'
 
 export default {
   name: 'App',
   data(){
     return {
-      stockList: ["APPL", "MSFT", "GOOG"]
+      stocks: [
+        {
+        name: 'APPL'
+        },
+        {
+        name: 'MSFT'
+        },
+        {
+        name: 'GOOG'
+        }
+      ]
     }
   },
   components: {
     'stock-chart': StockChart,
+    'stocks-list': StockList
   },
   mounted: function () {
     this.openDefaultTab('defaultOpen')
