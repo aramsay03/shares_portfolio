@@ -1,5 +1,5 @@
 <template lang="html">
-  <li>STOCK</li>
+  <li>{{stock.name}}</li>
 </template>
 
 <script>
