@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="tab">
-      <button class="tablinks" v-on:click="openTab(event, 'Summary')" id="defaultOpen">Summary</button>
-      <button class="tablinks" v-on:click="openTab(event, 'StockChart')">Stocks</button>
+      <button class="tablinks" v-on:click="openTab('Summary')" id="defaultOpen">Summary</button>
+      <button class="tablinks" v-on:click="openTab('StockChart')">Stocks</button>
     </div>
       <div id="Summary" class="tabcontent">
         <h3>Summary</h3>
@@ -50,7 +50,7 @@ export default {
     this.openDefaultTab('defaultOpen')
   },
   methods: {
-    openTab(event, pageName) {
+    openTab(pageName) {
       // Declare all variables
       let i, tabcontent, tablinks;
 
