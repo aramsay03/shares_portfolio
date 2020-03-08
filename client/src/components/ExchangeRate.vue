@@ -11,7 +11,7 @@ export default {
       exchangeRate: []
     }
   },
-  name: "summary-page",
+  name: "exchange-rate",
   mounted(){
     fetch(`https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=JPY&apikey=${API_KEY}`)
       .then(res => res.json())

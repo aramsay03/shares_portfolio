@@ -6,6 +6,7 @@
     </div>
       <div id="SummaryPage" class="tabcontent">
         <h3>Summary</h3>
+        <p>Welcome user! Your total shares value is $500!</p>
         <exchange-rate></exchange-rate>
       </div>
      <div id="StockChart" class="tabcontent">
