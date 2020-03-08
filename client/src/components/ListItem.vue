@@ -10,4 +10,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+li:hover {
+  color: blue;
+}
 </style>

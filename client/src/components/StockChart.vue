@@ -26,11 +26,11 @@ export default {
         },
 
         title: {
-          text: 'AAPL Stock Price'
+          text: 'MSFT Stock Price'
         },
 
         series: [{
-          name: 'AAPL Stock Price',
+          name: 'MSFT Stock Price',
           data: [10, 20, 30, 60, 40, 30, 20, 20],
           type: 'areaspline',
           threshold: null,

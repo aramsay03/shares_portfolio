@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <div class="tab">
-      <button class="tablinks" v-on:click="openTab('Summary')" id="defaultOpen">Summary</button>
+      <button class="tablinks" v-on:click="openTab('SummaryPage')" id="defaultOpen">Summary</button>
       <button class="tablinks" v-on:click="openTab('StockChart')">Stocks</button>
     </div>
-      <div id="Summary" class="tabcontent">
+      <div id="SummaryPage" class="tabcontent">
         <h3>Summary</h3>
-        <p>Your shares are worth $5 today :(</p>
+        <exchange-rate></exchange-rate>
       </div>
      <div id="StockChart" class="tabcontent">
        <div class="tabelement">
@@ -24,6 +24,7 @@
 import StockChart from './components/StockChart.vue'
 import StockList from './components/StockList.vue'
 import ListItem from './components/ListItem.vue'
+import ExchangeRate from './components/ExchangeRate.vue'
 
 export default {
   name: 'App',
@@ -44,7 +45,8 @@ export default {
   },
   components: {
     'stock-chart': StockChart,
-    'stocks-list': StockList
+    'stocks-list': StockList,
+    'exchange-rate': ExchangeRate
   },
   mounted: function () {
     this.openDefaultTab('defaultOpen')
