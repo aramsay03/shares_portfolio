@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1>StockNerd</h1>
     <div class="tab">
       <button class="tablinks" v-on:click="openTab('SummaryPage')" id="defaultOpen">Summary</button>
       <button class="tablinks" v-on:click="openTab('StockChart')">Stocks</button>
