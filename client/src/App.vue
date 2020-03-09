@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>StockNerd</h1>
+    <h1>Storacle</h1>
     <div class="tab">
       <button class="tablinks" v-on:click="openTab('SummaryPage')" id="defaultOpen">Summary</button>
       <button class="tablinks" v-on:click="openTab('StockChart')">Stocks</button>
@@ -27,6 +27,8 @@ import StockChart from './components/StockChart.vue'
 import StockList from './components/StockList.vue'
 import ListItem from './components/ListItem.vue'
 import ExchangeRate from './components/ExchangeRate.vue'
+import StockService from './services/StockService.js'
+import { eventBus } from '@/main'
 
 export default {
   name: 'App',
@@ -34,13 +36,16 @@ export default {
     return {
       stocks: [
         {
-        name: 'APPL'
+        name: 'APPL',
+        shares: 75
         },
         {
-        name: 'MSFT'
+        name: 'MSFT',
+        shares: 54
         },
         {
-        name: 'GOOG'
+        name: 'GOOG',
+        shares: 32
         }
       ]
     }
@@ -49,6 +54,12 @@ export default {
     'stock-chart': StockChart,
     'stocks-list': StockList,
     'exchange-rate': ExchangeRate
+  },
+  mounted() {
+    eventBus.$on('submit-stock', (stock) => {
+      StockService.addStock(stock)
+      .then(stockWithId => this.stocks.push(stockwithId));
+    })
   },
   mounted: function () {
     this.openDefaultTab('defaultOpen')

@@ -1,16 +1,16 @@
 <template lang="html">
   <div id="stockList">
   <ul>
-    <list-item v-for="(stock, index) in stocks" :stock="stocks" :key="index"></list-item>
+    <list-item v-for="(stock, index) in stocks" :stock="stock" :key="index"></list-item>
   </ul>
   <div class="popup" v-on:click="loadAddNewStockForm()">Add New Stock
   <span class="popuptext" id="myPopup">
-    <form class="" action="index.html" method="post">
+    <form v-on:submit.prevent="handleSubmit">
       <label for="stock-name">Stock Name:</label><br>
-      <input type="text" id="stock-name" name="stock-name"><br>
+      <input type="text" id="stock-name" name="stock-name" v:model="name"><br>
       <label for="shares-amount">How Many Shares?:</label><br>
-      <input type="text" id="shares-amount" name="shares-amount">
-      <input type="submit" value="Submit">
+      <input type="text" id="shares-amount" name="shares-amount" v:model="shares">
+      <input type="submit" name="submit" value="Save">
     </form>
     </span>
 </div>
@@ -20,6 +20,8 @@
 <script>
 
 import ListItem from './ListItem'
+import { eventBus } from '@/main'
+
 
 export default {
   name: 'stocks-list',
@@ -31,7 +33,11 @@ export default {
     loadAddNewStockForm() {
   let popup = document.getElementById("myPopup");
   popup.classList.toggle("show");
-}
+    },
+    handleSubmit() {
+      eventBus.$emit('submit-stock', this.$data);
+      this.name = this.shares = '';
+    }
   }
 }
 </script>
@@ -46,7 +52,7 @@ export default {
 
 /* The actual popup (appears on top) */
 .popup .popuptext {
-  visibility: hidden;
+  /* visibility: hidden; */
   width: 160px;
   background-color: #555;
   color: #fff;

@@ -7,6 +7,7 @@
 <script>
 const API_KEY=process.env.VUE_APP_ENV_SHARESAPI
 import Highcharts from 'highcharts'
+import accessibility from 'highcharts/modules/accessibility'
 import dark from '@/themes/dark.js'
 
 export default {
@@ -28,10 +29,34 @@ export default {
         title: {
           text: 'MSFT Stock Price'
         },
-
-        series: [{
+        subtitle: {
+          text: 'Source: Alpha Vantage'
+        },
+        yAxis: {
+          title: {
+            text: 'Closing Price'
+          }
+        },
+        xAxis: {
+          title: {
+            text: 'Date'
+          },
+          accessibility: {
+            enabled: true,
+            rangeDescription: 'Range 2010 to 2018'
+          }
+        },
+        plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: 2010
+          }
+        },
+          series: [{
           name: 'MSFT Stock Price',
-          data: [10, 20, 30, 60, 40, 30, 20, 20],
+          data: [0,1,2,3],
           type: 'areaspline',
           threshold: null,
           tooltip: {
@@ -51,8 +76,8 @@ export default {
           }
         }]
       }
-  }
-}
+    }
+  },
 }
 
 
