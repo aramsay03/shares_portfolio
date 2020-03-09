@@ -1,23 +1,32 @@
 <template>
+
   <div id="app">
     <h1>Storacle</h1>
+
     <div class="tab">
       <button class="tablinks" v-on:click="openTab('SummaryPage')" id="defaultOpen">Summary</button>
       <button class="tablinks" v-on:click="openTab('StockChart')">Stocks</button>
     </div>
+
       <div id="SummaryPage" class="tabcontent">
         <h3>Summary</h3>
         <p>Welcome user! Your total shares value is $500!</p>
         <exchange-rate></exchange-rate>
       </div>
+
      <div id="StockChart" class="tabcontent">
        <div class="tabelement">
       <stocks-list :stocks="stocks"></stocks-list>
       </div>
+
+      <stock-detail v-if="selectedStock" :stock="selectedStock"></stock-detail>
+
       <div class="tabelement">
       <stock-chart></stock-chart>
       </div>
+
     </div>
+
   </div>
 </template>
 
@@ -25,6 +34,7 @@
 
 import StockChart from './components/StockChart.vue'
 import StockList from './components/StockList.vue'
+import StockDetail from './components/StockDetail.vue'
 import ListItem from './components/ListItem.vue'
 import ExchangeRate from './components/ExchangeRate.vue'
 import StockService from './services/StockService.js'
@@ -47,22 +57,24 @@ export default {
         name: 'GOOG',
         shares: 32
         }
-      ]
+      ],
+      selectedStock: null
     }
   },
   components: {
     'stock-chart': StockChart,
     'stocks-list': StockList,
-    'exchange-rate': ExchangeRate
+    'exchange-rate': ExchangeRate,
+    'stock-detail': StockDetail
   },
   mounted() {
     eventBus.$on('submit-stock', (stock) => {
       StockService.addStock(stock)
-      .then(stockWithId => this.stocks.push(stockwithId));
-    })
-  },
-  mounted: function () {
-    this.openDefaultTab('defaultOpen')
+      .then(stockWithId => this.stocks.push(stockWithId));
+    });
+    eventBus.$on('stock-selected', stock => (this.selectedStock = stock));
+
+    this.openDefaultTab('defaultOpen');
   },
   methods: {
     openTab(pageName) {

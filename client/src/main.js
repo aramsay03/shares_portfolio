@@ -5,6 +5,8 @@ import Highcharts from 'highcharts'
 import accessibility from 'highcharts/modules/accessibility'
 import stockInit from 'highcharts/modules/stock'
 
+export const eventBus = new Vue();
+
 stockInit(Highcharts)
 
 Vue.config.productionTip = false

@@ -1,7 +1,8 @@
-const baseURL = 'http://localhost:3000/api/stocks/'
+const baseURL = 'http://localhost:3000/api/shares/'
 
 export default {
   addStock(stock) {
+    console.log('fetched', stock)
     return fetch(baseURL, {
       method: 'POST',
       body: JSON.stringify(stock),

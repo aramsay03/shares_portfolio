@@ -1,11 +1,18 @@
 <template lang="html">
-  <li>{{stock.name}}</li>
+  <li v-on:click="handleClick">{{stock.name}}</li>
 </template>
 
 <script>
+import { eventBus } from '@/main.js'
+
 export default {
   name: 'list-item',
-  props: ['stock']
+  props: ['stock'],
+  methods: {
+    handleClick() {
+      eventBus.$emit('stock-selected', this.stock);
+    }
+  }
 }
 </script>
 
