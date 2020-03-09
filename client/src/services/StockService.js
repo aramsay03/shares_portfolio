@@ -1,8 +1,13 @@
 const baseURL = 'http://localhost:3000/api/shares/'
 
 export default {
+
+  getStocks() {
+    return fetch(baseURL)
+    .then(res => res.json())
+  },
+
   addStock(stock) {
-    console.log('fetched', stock)
     return fetch(baseURL, {
       method: 'POST',
       body: JSON.stringify(stock),
@@ -11,5 +16,14 @@ export default {
       }
     })
     .then(res => res.json());
+  },
+  updateStock(stock) {
+    return fetch(baseURL, {
+      method: 'PUT',
+      body: JSON.stringify(stock),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
   }
 }

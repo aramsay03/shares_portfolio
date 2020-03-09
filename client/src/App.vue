@@ -72,6 +72,10 @@ export default {
       StockService.addStock(stock)
       .then(stockWithId => this.stocks.push(stockWithId));
     });
+    eventBus.$on('updated-stock', (stock) => {
+      StockService.updateStock(stock)
+      .then(() => getStocks())
+    });
     eventBus.$on('stock-selected', stock => (this.selectedStock = stock));
 
     this.openDefaultTab('defaultOpen');

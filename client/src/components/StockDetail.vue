@@ -2,11 +2,10 @@
   <div v-if="stock" id="StockDetail">
     <h2>{{stock.name}}</h2>
     <p>{{stock.shares}}</p>
-    <form>
+    <form method="puts">
       <label for="shares-number">Number of Shares</label>
-      <input type="text" name="shares-number" value="">
-      <input type="submit" name="buy" value="Buy Shares" v-on:click="handleBuy()">
-      <input type="submit" name="sell" value="Sell Shares" v-on:click="handleSell()">
+      <input type="text" name="shares-number" v-model="stock.shares" value="">
+      <input type="submit" name="buy" value="Buy Shares" v-on:click.prevent="handleUpdate()">
     </form>
   </div>
 </template>
@@ -16,8 +15,22 @@
 import { eventBus } from '@/main.js'
 
 export default {
+  // data() {
+  //   return {
+  //     name: this.stocks.name,
+  //     shares: this.stocks.shares
+  //   }
+  // },
   name: 'stock-detail',
-  props: ['stock']
+  props: ['stock'],
+  methods: {
+    handleUpdate() {
+      eventBus.$emit('updated-stock', {
+        name: this.stock.name,
+        shares: this.stock.shares
+      })
+    }
+  }
 }
 </script>
 
