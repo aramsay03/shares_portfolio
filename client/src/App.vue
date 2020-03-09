@@ -11,7 +11,6 @@
       <div id="SummaryPage" class="tabcontent">
         <h3>Summary</h3>
         <p>Welcome user! Your total shares value is $500!</p>
-        <exchange-rate></exchange-rate>
       </div>
 
      <div id="StockChart" class="tabcontent">
@@ -36,7 +35,6 @@ import StockChart from './components/StockChart.vue'
 import StockList from './components/StockList.vue'
 import StockDetail from './components/StockDetail.vue'
 import ListItem from './components/ListItem.vue'
-import ExchangeRate from './components/ExchangeRate.vue'
 import StockService from './services/StockService.js'
 import { eventBus } from '@/main'
 
@@ -64,7 +62,6 @@ export default {
   components: {
     'stock-chart': StockChart,
     'stocks-list': StockList,
-    'exchange-rate': ExchangeRate,
     'stock-detail': StockDetail
   },
   mounted() {
