@@ -18,18 +18,31 @@ const createRouter = function (collection) {
     });
   });
   // SHOW - INDEX
-    router.get('/:id', (req, res) => {
+  router.get('/:id', (req, res) => {
+    const id = req.params.id;
+    collection
+    .findOne({ _id: ObjectID(id) })
+    .then((doc) => res.json(doc))
+    .catch((err) => {
+      console.log(err);
+      res.status(500);
+      res.json({status: 500, error: err})
+    });
+  });
+    // DESTROY - DELETE
+  router.delete('/:id', (req, res) => { // MODIFIED
       const id = req.params.id;
       collection
-        .findOne({ _id: ObjectID(id) })
-        .then((doc) => res.json(doc))
-        .catch((err) => {
-          console.log(err);
-          res.status(500);
-          res.json({status: 500, error: err})
-        });
+      .deleteOne({ _id: ObjectID(id) }) // MODIFIED
+      .then (result => res.json(result) // MODIFIED
+      )
+      .catch((err) => {
+        console.error(err);
+        res.status(500);
+        res.json({ status: 500, error: err });
+      });
     });
-    // DESTROY - DELETE
+
     // CREATE - POST
     router.post('/', (req, res) => {
       const newData = req.body;

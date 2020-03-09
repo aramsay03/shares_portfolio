@@ -65,6 +65,8 @@ export default {
     'stock-detail': StockDetail
   },
   mounted() {
+    // this.getStocks();
+
     eventBus.$on('submit-stock', (stock) => {
       StockService.addStock(stock)
       .then(stockWithId => this.stocks.push(stockWithId));

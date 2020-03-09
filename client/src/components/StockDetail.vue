@@ -2,7 +2,7 @@
   <div v-if="stock" id="StockDetail">
     <h2>{{stock.name}}</h2>
     <p>{{stock.shares}}</p>
-    <form method="puts">
+    <form method="patch">
       <label for="shares-number">Number of Shares</label>
       <input type="text" name="shares-number" v-model="stock.shares" value="">
       <input type="submit" name="buy" value="Buy Shares" v-on:click.prevent="handleUpdate()">

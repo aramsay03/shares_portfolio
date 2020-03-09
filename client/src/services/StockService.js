@@ -19,7 +19,7 @@ export default {
   },
   updateStock(stock) {
     return fetch(baseURL, {
-      method: 'PUT',
+      method: 'PATCH',
       body: JSON.stringify(stock),
       headers: {
         'Content-Type': 'application/json'
