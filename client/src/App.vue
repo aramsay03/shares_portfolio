@@ -64,23 +64,7 @@ export default {
   name: 'App',
   data(){
     return {
-      stocks: [
-        {
-          name: 'Apple Inc.',
-          symbol: 'APPL',
-          shares: 75
-        },
-        {
-          name: 'Microsoft',
-          symbol: 'MSFT',
-          shares: 54
-        },
-        {
-          name: 'Google',
-          symbol:'GOOG',
-          shares: 32
-        }
-      ],
+      stocks: [],
       selectedStock: null
     }
   },
@@ -93,6 +77,8 @@ export default {
     'summary-stock-chart': SummaryStockChart
   },
   mounted() {
+    this.getStocks();
+
     eventBus.$on('submit-stock', (stock) => {
       StockService.addStock(stock)
       .then(stockWithId => this.stocks.push(stockWithId));
@@ -100,7 +86,7 @@ export default {
 
     eventBus.$on('updated-stock', (stock) => {
       StockService.updateStock(stock)
-      .then(() => getStocks())
+      .then(() => this.getStocks())
     });
 
     eventBus.$on('stock-selected', stock => (this.selectedStock = stock));
@@ -126,6 +112,11 @@ export default {
     },
     openDefaultTab(tabId) {
       document.getElementById(tabId).click();
+    },
+
+    getStocks() {
+      StockService.getStocks()
+      .then(stocks => this.stocks = stocks)
     }
   }
 }

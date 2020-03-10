@@ -84,7 +84,7 @@ export default {
     }
   }
 
-  </script>
+</script>
 
   <style lang="css" scoped>
   /* Popup container */

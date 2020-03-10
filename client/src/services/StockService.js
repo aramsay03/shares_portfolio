@@ -4,7 +4,7 @@ export default {
 
   getStocks() {
     return fetch(baseURL)
-    .then(res => res.json())
+    .then(res => res.json());
   },
 
   addStock(stock) {
@@ -18,12 +18,13 @@ export default {
     .then(res => res.json());
   },
   updateStock(stock) {
-    return fetch(baseURL, {
-      method: 'PATCH',
+    return fetch(baseURL + stock._id, {
+      method: 'PUT',
       body: JSON.stringify(stock),
       headers: {
         'Content-Type': 'application/json'
       }
     })
+      .then(res => res.json())
   }
 }
