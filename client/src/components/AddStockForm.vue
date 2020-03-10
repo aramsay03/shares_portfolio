@@ -71,6 +71,7 @@ export default {
       this.submitStock.name = this.submitStock.shares = this.submitStock.symbol ='';
       this.isActive = false;
     },
+
     CloseAddNewStockForm() {
       this.isActive = false;
       console.log(this.isActive)
