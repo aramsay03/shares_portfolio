@@ -26,8 +26,7 @@ export default {
   methods: {
     handleUpdate() {
       eventBus.$emit('updated-stock', {
-        name: this.stock.name,
-        shares: this.stock.shares
+        shares: stock.shares
       })
     }
   }
