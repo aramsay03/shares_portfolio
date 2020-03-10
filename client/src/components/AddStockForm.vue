@@ -1,7 +1,9 @@
 <template lang="html">
-  <div class="popup" v-on:click="loadAddNewStockForm()">Add New Stock
 
-  <span class="popuptext" id="myPopup">
+  <div class="popup">
+    <span v-on:click="loadAddNewStockForm">Add New Stock</span>
+  <span v-bind:class="[isActive ? 'popuptext popuptextvisable' : 'popuptext popuptexthidden']" id="myPopup">
+    <span v-on:click="handleClose" class="close" id="myPopupClose">&times;</span>
 
     <form v-on:submit.prevent="handleSubmit">
 
@@ -26,17 +28,22 @@ export default {
   data(){
     return {
       name: '',
-      shares: ''
+      shares: '',
+      isActive: false
+
     }
   },
   methods: {
     loadAddNewStockForm() {
-  let popup = document.getElementById("myPopup");
-  popup.classList.toggle("show");
+      this.isActive = true;
     },
     handleSubmit() {
       eventBus.$emit('submit-stock', this.$data);
       this.name = this.shares = '';
+    },
+    handleClose() {
+      this.isActive = false;
+      console.log(this.isActive)
     }
   }
 }
@@ -50,9 +57,15 @@ export default {
   cursor: pointer;
 }
 
+.popup .popuptextvisable {
+  display: block;
+}
+
+.popup .popuptexthidden {
+  display: none;
+}
 /* The actual popup (appears on top) */
 .popup .popuptext {
-  visibility: hidden;
   width: 160px;
   background-color: #555;
   color: #fff;
@@ -64,6 +77,22 @@ export default {
   bottom: 125%;
   left: 50%;
   margin-left: -80px;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* Popup arrow */
@@ -76,13 +105,6 @@ export default {
   border-width: 5px;
   border-style: solid;
   border-color: #555 transparent transparent transparent;
-}
-
-/* Toggle this class when clicking on the popup container (hide and show the popup) */
-.popup .show {
-  visibility: visible;
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s
 }
 
 /* Add animation (fade in the popup) */
