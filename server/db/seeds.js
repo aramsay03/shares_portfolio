@@ -13,6 +13,6 @@ db.shares.insertMany([
   },
   {
   name: "GOOG",
-  shares: 75  
+  shares: 75
   }
 ])

@@ -21,7 +21,7 @@ const createRouter = function (collection) {
   router.get('/:id', (req, res) => {
     const id = req.params.id;
     collection
-    .findOne({ _id: ObjectID(id) })
+    .findOne({ _id: ObjectId(id) })
     .then((doc) => res.json(doc))
     .catch((err) => {
       console.log(err);
@@ -33,7 +33,7 @@ const createRouter = function (collection) {
   router.delete('/:id', (req, res) => { // MODIFIED
       const id = req.params.id;
       collection
-      .deleteOne({ _id: ObjectID(id) }) // MODIFIED
+      .deleteOne({ _id: ObjectId(id) }) // MODIFIED
       .then (result => res.json(result) // MODIFIED
       )
       .catch((err) => {
@@ -63,7 +63,7 @@ const createRouter = function (collection) {
       const updatedData = req.body;
       collection
       .findOneAndUpdate(
-        { _id: ObjectID(id) },
+        { _id: ObjectId(id) },
         { $set: updatedData },
         { returnOriginal: false }
       )

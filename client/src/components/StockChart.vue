@@ -7,7 +7,6 @@
 <script>
 const API_KEY=process.env.VUE_APP_ENV_SHARESAPI
 import Highcharts from 'highcharts'
-import accessibility from 'highcharts/modules/accessibility'
 import dark from '@/themes/dark.js'
 
 export default {
