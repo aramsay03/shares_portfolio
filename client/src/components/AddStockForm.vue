@@ -94,7 +94,7 @@ export default {
     cursor: pointer;
     width: 100%;
     text-align: center;
-    margin: 0.5em 0;
+    margin: 5em 0;
   }
 
   .popup .popuptextvisable {
@@ -155,7 +155,7 @@ export default {
     border-radius: 2em;
     width: 90%;
     padding: 0.5em 1.5em;
-    margin: 0.5em 5%;
+    margin: 4em 5%;
     font-size: 1.1em;
     text-align: center;
     background-color: #F4B41A;

@@ -17,10 +17,12 @@ export default {
     })
     .then(res => res.json());
   },
-  updateStock(stock) {
-    return fetch(baseURL + stock._id, {
+  updateStock(payload) {
+    const id = payload._id
+    delete payload._id
+    return fetch(baseURL + id, {
       method: 'PUT',
-      body: JSON.stringify(stock),
+      body: JSON.stringify(payload),
       headers: {
         'Content-Type': 'application/json'
       }

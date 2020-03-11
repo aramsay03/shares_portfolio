@@ -7,7 +7,7 @@
       <div class="stock-detail-form">
         <form method="patch">
           <label for="shares-number">Shares: </label>
-          <input type="text" name="shares-number" v-model="updatedStock.shares" value="">
+          <input type="number" name="shares-number" v-model="updatedStock.shares" value="">
           <input type="submit" name="buy" value="Add Shares" v-on:click.prevent="handleUpdate()">
         </form>
       </div>
@@ -23,7 +23,7 @@ export default {
     return {
       updatedStock: {
         _id: this.stock._id,
-        shares: ''
+        shares: 0
       }
     }
   },
@@ -31,7 +31,9 @@ export default {
   props: ['stock'],
   methods: {
     handleUpdate() {
+      this.stock.shares = this.updatedStock.shares
       eventBus.$emit('updated-stock', this.updatedStock)
+      this.updatedStock.shares = 0
     },
   }
 }
